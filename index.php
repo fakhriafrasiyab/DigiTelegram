@@ -55,9 +55,10 @@ class TelegramBot {
         return $result;
     }
 }
+// https://digitelegram.requestcatcher.com/
 $telegram = new TelegramBot();
 $telegram->setToken('1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo');
-echo $telegram->setWebhook('https://digitelegram.requestcatcher.com/');
+echo $telegram->setWebhook('');
 
 
 $data = $telegram->getData();
