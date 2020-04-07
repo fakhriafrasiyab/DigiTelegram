@@ -31,9 +31,9 @@ class TelegramBot {
         fwrite($myfile, "bura gelib catmir");
         //$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
         //fwrite($myfile, $data);
-        echo $data->message;
-        $this->chatId = $data->message->chat->id;
-        return $data->message;
+        echo $data['message'];
+        $this->chatId = $data['message']->chat->id;
+        return $data['message'];
     }
     public function setWebhook($url){
         return $this->request('setWebhook',[
