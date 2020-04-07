@@ -29,7 +29,7 @@ class TelegramBot {
         fwrite($myfile, "bura gelib catir");
         $data = json_decode(file_get_contents('php://input'));
         fwrite($myfile, "bura gelib catmir");
-        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        //$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
         //fwrite($myfile, $data);
         echo $data->message;
         $this->chatId = $data->message->chat->id;
