@@ -30,7 +30,7 @@ class TelegramBot {
         $myfile = fopen("testmeqsedli.txt", "w") or die("Unable to open file!");
         fwrite($myfile, "bura gelib catir");
 
-        $data = json_decode(file_get_contents('php://input'));
+        $data = json_decode(file_get_contents('php://input'), true);
 
         fwrite($myfile, "bura gelib catmir");
         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
