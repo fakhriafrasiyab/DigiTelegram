@@ -17,7 +17,7 @@ class TelegramBot {
     public $chatId;
     public function setToken($token){
         $this->token = $token;
-//     }
+    }
 //     public function getData(){
 //         $data = json_decode(file_get_contents('php://input'));
 //         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
