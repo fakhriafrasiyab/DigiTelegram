@@ -69,5 +69,5 @@ try {
 }catch (Exception $e) {
 //    echo 'Message:' .$e->getMessage();
     $myfile = fopen("fax.txt", "w") or die("Unable to open file!");
-    fwrite($myfile, $e);
+    fwrite($myfile, $e->getMessage());
 }
