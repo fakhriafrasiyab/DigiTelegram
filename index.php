@@ -17,9 +17,23 @@ class TelegramBot {
     public $chatId;
     public function setToken($token){
         $this->token = $token;
-    }
+//     }
+//     public function getData(){
+//         $data = json_decode(file_get_contents('php://input'));
+//         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+//         fwrite($myfile, $data);
+//         echo $data;
+//         $this->chatId = $data->message->chat->id;
+//         return $data->message;
+//     }
     public function getData(){
+
+        $myfile = fopen("testmeqsedli.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, "bura gelib catir");
+
         $data = json_decode(file_get_contents('php://input'));
+
+        fwrite($myfile, "bura gelib catmir");
         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
         fwrite($myfile, $data);
         echo $data;
