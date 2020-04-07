@@ -21,7 +21,7 @@ class TelegramBot {
     public function getData(){
         $data = json_decode(file_get_contents('php://input'));
         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, "Faxri");
+        fwrite($myfile, $data);
         $this->chatId = $data->message->chat->id;
         return $data->message;
     }
