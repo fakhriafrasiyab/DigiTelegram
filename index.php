@@ -10,8 +10,6 @@
 //$request_url= 'https://api.telegram.org/bot' .$token .'/sendMessage?' .http_build_query($request_params);
 //file_get_contents($request_url);
 
-
-
 class TelegramBot {
     const API_URL = 'https://api.telegram.org/bot';
     public $token;
@@ -29,19 +27,17 @@ class TelegramBot {
     function getData(){
         $myfile = fopen("testmeqsedli.txt", "w") or die("Unable to open file!");
         fwrite($myfile, "bura gelib catir");
-
-        $data = json_decode(file_get_contents('php://input'), true);
-
+        $data = json_decode(file_get_contents('php://input'));
         fwrite($myfile, "bura gelib catmir");
         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $data);
-        echo $data;
+        //fwrite($myfile, $data);
+        echo $data->message;
         $this->chatId = $data->message->chat->id;
         return $data->message;
     }
     public function setWebhook($url){
         return $this->request('setWebhook',[
-           'url'=>$url
+            'url'=>$url
         ]);
     }
     public function sendMessage($message){
