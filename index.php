@@ -57,13 +57,15 @@ class TelegramBot {
     }
 }
  
-$telegram = new TelegramBot();
-$telegram->setToken('1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo');
-echo $telegram->setWebhook('https://digitelegram.herokuapp.com');
+try {
+    $telegram = new TelegramBot();
+    $telegram->setToken('1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo');
+    echo $telegram->setWebhook('https://digitelegram.herokuapp.com');
 
-
-$data = $telegram->getData();
-
-if ($data->text == 'hello'){
-    $telegram->sendMessage('hey hi everyone');
+    $data = $telegram->getData();
+    if ($data->text == 'hello') {
+        $telegram->sendMessage('hey hi everyone');
+    }
+}catch (Exception $e) {
+    echo 'Message:' .$e->getMessage();
 }
