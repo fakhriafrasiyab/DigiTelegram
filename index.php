@@ -11,6 +11,7 @@
 //file_get_contents($request_url);
 
 
+
 class TelegramBot {
     const API_URL = 'https://api.telegram.org/bot';
     public $token;
@@ -18,16 +19,14 @@ class TelegramBot {
     public function setToken($token){
         $this->token = $token;
     }
-//     public function getData(){
-//         $data = json_decode(file_get_contents('php://input'));
-//         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-//         fwrite($myfile, $data);
-//         echo $data;
-//         $this->chatId = $data->message->chat->id;
-//         return $data->message;
-//     }
-    public function getData(){
-
+//    public function getData(){
+//        $data = json_decode(file_get_contents('php://input'));
+//        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+//        fwrite($myfile, $data);
+//        $this->chatId = $data->message->chat->id;
+//        return $data->message;
+//    }
+    function getData(){
         $myfile = fopen("testmeqsedli.txt", "w") or die("Unable to open file!");
         fwrite($myfile, "bura gelib catir");
 
@@ -66,11 +65,10 @@ class TelegramBot {
             echo 'Error:' . curl_error($ch);
         }
         curl_close($ch);
-
         return $result;
     }
 }
- 
+//https://digitelegram.herokuapp.com
 try {
     $telegram = new TelegramBot();
     $telegram->setToken('1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo');
@@ -84,4 +82,5 @@ try {
 //    echo 'Message:' .$e->getMessage();
     $myfile = fopen("fax.txt", "w") or die("Unable to open file!");
     fwrite($myfile, $e->getMessage());
+    throw $e;
 }
