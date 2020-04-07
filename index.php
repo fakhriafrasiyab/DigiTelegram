@@ -67,5 +67,7 @@ try {
         $telegram->sendMessage('hey hi everyone');
     }
 }catch (Exception $e) {
-    echo 'Message:' .$e->getMessage();
+//    echo 'Message:' .$e->getMessage();
+    $myfile = fopen("fax.txt", "w") or die("Unable to open file!");
+    fwrite($myfile, $e);
 }
