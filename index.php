@@ -38,7 +38,7 @@ class TelegramBot
         //fwrite($myfile, $data['message']);
 //        print_r($data['message']);
         $this->chatId = 483621591;
-        //print_r($this->chatId);
+        print_r($this->chatId);
         return $data['message'];
     }
 
