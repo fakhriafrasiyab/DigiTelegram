@@ -37,7 +37,7 @@ class TelegramBot
         $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
         //fwrite($myfile, $data['message']);
 //        print_r($data['message']);
-        $this->chatId = $data['message']->chat->id;
+        $this->chatId = 483621591;
         //print_r($this->chatId);
         return $data['message'];
     }
