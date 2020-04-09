@@ -95,13 +95,13 @@ class TelegramBot
     }
 }
 $telegram = new TelegramBot();
-$result = $telegram->sendTelegram(483621591, "hi");
+//$result = $telegram->sendTelegram(483621591, "hi");
 //print_r($result);
 
 //https://digitelegram.herokuapp.com
 try {
     $telegram->setToken('1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo');
-    //print_r($telegram->setWebhook('https://digitelegram.herokuapp.com'));
+    //print_r($telegram->setWebhook(''));
 
     $data = $telegram->getData();
     print_r($data['text']);
