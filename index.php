@@ -38,7 +38,7 @@ class TelegramBot
         //fwrite($myfile, $data['message']);
 //        print_r($data['message']);
         $this->chatId = $data['message']->chat->id;
-        print_r($this->chatId);
+        //print_r($this->chatId);
         return $data['message'];
     }
 
@@ -52,9 +52,27 @@ class TelegramBot
     public function sendMessage($message)
     {
         return $this->request('sendMessage', [
-            'chat_id' => $this->chatId,
+            'chat_id' => 483621591,
             'text' => $message
         ]);
+    }
+    function sendTelegram($chatID, $msg) {
+        echo "sending message to " . $chatID . "\n";
+
+        $token = "1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo";
+        $getUpdate = "http://api.telegram.org/" . $token . "/getUpdates";
+
+        $url = "https://api.telegram.org/" . $token . "/sendMessage?chat_id=" . $chatID;
+        $url = $url . "&text=" . urlencode($msg);
+        $ch = curl_init();
+        $optArray = array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true
+        );
+        curl_setopt_array($ch, $optArray);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
     }
 
     public function request($method, $posts)
@@ -76,17 +94,19 @@ class TelegramBot
         return $result;
     }
 }
+$telegram = new TelegramBot();
+$result = $telegram->sendTelegram(483621591, "hi");
+//print_r($result);
 
 //https://digitelegram.herokuapp.com
 try {
-    $telegram = new TelegramBot();
     $telegram->setToken('1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo');
-    //print_r($telegram->setWebhook('https://digitaltelegram.requestcatcher.com/'));
+    //print_r($telegram->setWebhook('https://digitelegram.herokuapp.com'));
 
     $data = $telegram->getData();
     print_r($data['text']);
     if ($data['text'] == 'hello') {
-        $telegram->sendMessage('hey hi everyone');
+       print_r($telegram->sendMessage('hey hi everyone'));
     }
 } catch (Exception $e) {
     print_r( 'Message:' .$e->getMessage());
