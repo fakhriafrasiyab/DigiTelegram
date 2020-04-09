@@ -10,11 +10,14 @@
 //$request_url= 'https://api.telegram.org/bot' .$token .'/sendMessage?' .http_build_query($request_params);
 //file_get_contents($request_url);
 
-class TelegramBot {
+class TelegramBot
+{
     const API_URL = 'https://api.telegram.org/bot';
     public $token;
     public $chatId;
-    public function setToken($token){
+
+    public function setToken($token)
+    {
         $this->token = $token;
     }
 //    public function getData(){
@@ -24,31 +27,40 @@ class TelegramBot {
 //        $this->chatId = $data->message->chat->id;
 //        return $data->message;
 //    }
-    function getData(){
+    function getData()
+    {
         $myfile = fopen("testmeqsedli.txt", "w") or die("Unable to open file!");
         fwrite($myfile, "bura gelib catir");
-        $data = json_decode(file_get_contents('php://input'));
+        $data = json_decode(file_get_contents('php://input'), true);
+        //print_r($data);
         fwrite($myfile, "bura gelib catmir");
-        //$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        //fwrite($myfile, $data);
-        echo $data['message'];
+        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        //fwrite($myfile, $data['message']);
+//        print_r($data['message']);
         $this->chatId = $data['message']->chat->id;
+        print_r($this->chatId);
         return $data['message'];
     }
-    public function setWebhook($url){
-        return $this->request('setWebhook',[
-            'url'=>$url
+
+    public function setWebhook($url)
+    {
+        return $this->request('setWebhook', [
+            'url' => $url
         ]);
     }
-    public function sendMessage($message){
+
+    public function sendMessage($message)
+    {
         return $this->request('sendMessage', [
             'chat_id' => $this->chatId,
-            'text'=> $message
+            'text' => $message
         ]);
     }
-    public function request($method, $posts){
+
+    public function request($method, $posts)
+    {
         $ch = curl_init();
-        $url=self::API_URL .$this->token .'/' .$method;
+        $url = self::API_URL . $this->token . '/' . $method;
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -64,19 +76,18 @@ class TelegramBot {
         return $result;
     }
 }
+
 //https://digitelegram.herokuapp.com
 try {
     $telegram = new TelegramBot();
     $telegram->setToken('1135490249:AAFupOMDh31tpxqDIzBRcLseU__w1UPspFo');
-    echo $telegram->setWebhook('https://digitelegram.herokuapp.com');
+    //print_r($telegram->setWebhook('https://digitaltelegram.requestcatcher.com/'));
 
     $data = $telegram->getData();
-    if ($data->text == 'hello') {
+    print_r($data['text']);
+    if ($data['text'] == 'hello') {
         $telegram->sendMessage('hey hi everyone');
     }
-}catch (Exception $e) {
-//    echo 'Message:' .$e->getMessage();
-    $myfile = fopen("fax.txt", "w") or die("Unable to open file!");
-    fwrite($myfile, $e->getMessage());
-    throw $e;
+} catch (Exception $e) {
+    print_r( 'Message:' .$e->getMessage());
 }
